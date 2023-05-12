@@ -39,7 +39,19 @@ function editdata($data)
 function hapusdata($data)
 {
     global $koneksi;
-    $id = htmlspecialchars($_POST['id']);
+    $id = htmlspecialchars($data['id_hapus']);
     $query = "DELETE FROM user WHERE id = $id";
     return mysqli_query($koneksi, $query);
+}
+
+function createData($data)
+{
+    global $koneksi;
+    $nim = htmlspecialchars($data['nim']);
+    $nama = htmlspecialchars($data['nama']);
+    $jurusan = htmlspecialchars($data['jurusan']);
+
+    $query = "INSERT INTO user VALUES (NULL,'$nama','$nim','$jurusan')";
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
 }
